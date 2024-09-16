@@ -4,16 +4,15 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-import jakarta.persistence.CollectionTable;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -39,8 +38,6 @@ public class Order {
 	@Column(nullable = true)
 	private BigDecimal totalPrice;
 
-	@ElementCollection
-	@CollectionTable(name = "order_products", joinColumns = @JoinColumn(name = "order_id"))
-	@Column(name = "product_id")
-	private List<Long> productIds;
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<OrderItem> orderItems;
 }
