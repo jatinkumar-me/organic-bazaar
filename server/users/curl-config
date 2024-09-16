@@ -1,0 +1,4 @@
+variable url=http://localhost:8080
+header="Content-Type: application/json"
+variable token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXRpbjIzMkBhYmMuY29tIiwiaWF0IjoxNzI2MDQwNjU4LCJleHAiOjE3MjYwNDA3NjZ9.HV9Mt5S1njTehP_sNJC5ESXO7Y9FqYPws24fI_pC44M
+expand-variable auth="Authorization: Bearer {{token}}"
