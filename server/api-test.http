@@ -1,0 +1,115 @@
+########################################################
+########### ORGANIC BAAZAAR API TEST ###################
+########################################################
+@host = localhost
+@port = 8080
+@url = http://{{host}}:{{port}}
+
+
+# ==== Inventory =======================================
+@port = 8081
+
+### Get inventory by id
+GET {{url}}/api/inventory/1
+
+### Create new inventory
+POST {{url}}/api/inventory
+
+{
+    "stockQuantity": 12,
+    "warehouseLocation": "New delhi"
+}
+
+
+# ==== Products ========================================
+@port = 8083
+@url = http://{{host}}:{{port}}
+
+### get all Products
+GET {{url}}
+
+### get product by id
+GET {{url}}/1
+
+### get product by ids
+GET {{url}}/ids?ids=1&ids=2&ids=3
+
+### create new product
+POST {{url}}
+
+{
+    "name": "Broccoli", "category": "Vegetable", "price": 0.80, "stock": 180
+}
+
+### update product
+
+### delete product
+
+### bulk add products
+POST {{url}}/add-many
+
+[
+    {"name": "Apple", "category": "Fruit", "price": 1.00, "stock": 100},
+    {"name": "Banana", "category": "Fruit", "price": 0.50, "stock": 150},
+    {"name": "Carrot", "category": "Vegetable", "price": 0.30, "stock": 200},
+    {"name": "Broccoli", "category": "Vegetable", "price": 0.80, "stock": 180},
+    {"name": "Chicken Breast", "category": "Meat", "price": 5.00, "stock": 50},
+    {"name": "Salmon", "category": "Fish", "price": 6.00, "stock": 60},
+    {"name": "Milk", "category": "Dairy", "price": 1.20, "stock": 120},
+    {"name": "Cheese", "category": "Dairy", "price": 2.50, "stock": 80},
+    {"name": "Bread", "category": "Bakery", "price": 1.00, "stock": 150},
+    {"name": "Butter", "category": "Dairy", "price": 1.80, "stock": 70},
+    {"name": "Orange", "category": "Fruit", "price": 1.20, "stock": 130},
+    {"name": "Strawberry", "category": "Fruit", "price": 2.00, "stock": 90},
+    {"name": "Eggs", "category": "Dairy", "price": 2.50, "stock": 100},
+    {"name": "Rice", "category": "Grain", "price": 3.00, "stock": 200},
+    {"name": "Pasta", "category": "Grain", "price": 1.50, "stock": 180},
+    {"name": "Olive Oil", "category": "Condiment", "price": 5.50, "stock": 50},
+    {"name": "Tomato Sauce", "category": "Condiment", "price": 1.80, "stock": 60},
+    {"name": "Yogurt", "category": "Dairy", "price": 1.00, "stock": 110},
+    {"name": "Granola", "category": "Snack", "price": 3.00, "stock": 90},
+    {"name": "Nuts", "category": "Snack", "price": 4.00, "stock": 70},
+    {"name": "Chocolate", "category": "Snack", "price": 2.20, "stock": 100}
+]
+
+### Add reviews to product
+POST {{url}}/1/reviews
+userId: 2
+
+{
+  "comment": "Bit overpriced",
+  "rating": 3
+}
+
+### Delete review
+DELETE {{url}}/1/reviews/2
+userId: 2
+
+
+# ==== Auth ============================================
+@port = 8080
+
+### get all users
+GET {{url}}/users
+
+### login
+POST {{url}}/login
+
+{
+    "email": "jatin",
+    "password": "jatin123"
+}
+
+### register
+POST {{url}}/register
+
+{
+    "name": "Jatin Kumar",
+    "email": "jatin@abc.com",
+    "password": "jatin",
+    "address": "Kanpur",
+    "phoneNumber": "98239234"
+}
+
+### google
+GET https://www.google.com
