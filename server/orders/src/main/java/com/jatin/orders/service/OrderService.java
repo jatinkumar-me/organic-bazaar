@@ -10,7 +10,6 @@ import com.jatin.orders.dto.ProductResponse;
 import com.jatin.orders.model.Order;
 import com.jatin.orders.model.OrderItem;
 import com.jatin.orders.model.OrderStatus;
-import com.jatin.orders.repository.OrderItemRepository;
 import com.jatin.orders.repository.OrderRepository;
 
 import java.math.BigDecimal;
@@ -26,9 +25,6 @@ public class OrderService {
 
     @Autowired
     private OrderRepository orderRepository;
-
-    @Autowired
-    private OrderItemRepository orderItemRepository;
 
     @Autowired
     private ProductClient productClient;
