@@ -136,4 +136,28 @@ userId: 2
     ]
 }
 
+### Get all subscriptions
+GET {{url}}/subscriptions
+userId : 2
 
+### create new subscription
+POST {{url}}/subscriptions
+userId: 2
+
+{
+    "productId": 2,
+    "quantity": 10,
+    "scheduleType": "WEEKLY",
+    "deliveryDays": [
+    "MONDAY",
+    "FRIDAY"
+    ]
+}
+
+### change subscription status
+PATCH {{url}}/subscriptions/1/status
+userId: 2
+
+{
+    "status": "PAUSED"
+}
