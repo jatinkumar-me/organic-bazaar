@@ -111,5 +111,29 @@ POST {{url}}/register
     "phoneNumber": "98239234"
 }
 
-### google
-GET https://www.google.com
+# ==== Orders ==========================================
+@port = 8085
+@url = http://{{host}}:{{port}}
+
+### get all orders
+GET {{url}}
+
+### create order
+POST {{url}}
+userId: 2
+
+{
+    "userId": 2,
+    "orderItems": [
+        {
+            "productId": 2,
+            "quantity": 4
+        },
+        {
+            "productId": 1,
+            "quantity": 3
+        }
+    ]
+}
+
+
