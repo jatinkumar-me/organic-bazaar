@@ -19,7 +19,6 @@ import jakarta.annotation.PostConstruct;
 public class JWTService {
 
     private SecretKey secretkey;
-    final int EXPIRATION_DURATION = 60 * 60 * 30;
 
     @PostConstruct
     public void init() {
@@ -38,7 +37,6 @@ public class JWTService {
                 .add(claims)
                 .subject(username)
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + EXPIRATION_DURATION))
                 .and()
                 .signWith(getKey())
                 .compact();
