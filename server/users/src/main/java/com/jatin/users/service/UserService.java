@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.jatin.users.model.AuthenticationRequest;
 import com.jatin.users.model.User;
+import com.jatin.users.model.VerifyTokenResponse;
 import com.jatin.users.repository.UserRepository;
 
 @Service
@@ -45,5 +46,14 @@ public class UserService {
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    public VerifyTokenResponse validateToken(String token) {
+        String email = jwtService.extractUserName(token);
+        User user = userRepository.findByEmail(email);
+        VerifyTokenResponse resp = new VerifyTokenResponse();
+        resp.setToken(token);
+        resp.setUserId(user.getUserId());
+        return resp;
     }
 }
