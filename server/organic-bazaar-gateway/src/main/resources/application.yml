@@ -1,0 +1,35 @@
+server:
+  port: 8080
+
+management:
+  endpoint.gateway.enabled: true
+  endpoints.web.exposure.include: gateway
+
+spring:
+  application.name: organic-bazaar-gateway
+  cloud:
+    gateway:
+      discovery.locator.enabled: true
+      routes:
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            Path=/users/**
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            Path=/products/**
+          filters:
+            - AuthFilter
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            Path=/orders/**
+          filters:
+            - AuthFilter
+        - id: subscription-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            Path=/subscriptions/**
+          filters:
+            - AuthFilter
