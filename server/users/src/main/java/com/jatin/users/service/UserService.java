@@ -34,14 +34,18 @@ public class UserService {
         return user;
     }
 
-    public String verify(AuthenticationRequest authenticationRequest) {
+    public VerifyTokenResponse verify(AuthenticationRequest authenticationRequest) {
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(),
                         authenticationRequest.getPassword()));
         if (!authentication.isAuthenticated()) {
             throw new RuntimeException("Access denied");
         }
-        return jwtService.generateToken(authenticationRequest.getEmail());
+
+        VerifyTokenResponse resp = new VerifyTokenResponse();
+        resp.setToken(jwtService.generateToken(authenticationRequest.getEmail()));
+        resp.setUserId(userRepository.findByEmail(authenticationRequest.getEmail()).getUserId());
+        return resp;
     }
 
     public List<User> getAllUsers() {
