@@ -86,30 +86,37 @@ DELETE {{url}}/1/reviews/2
 userId: 2
 
 
-# ==== Auth ============================================
-@port = 8080
+### ==== Authh ============================================
+@port = 8082
+@url = http://{{host}}:{{port}}
 
 ### get all users
-GET {{url}}/users
-
-### login
-POST {{url}}/login
-
-{
-    "email": "jatin",
-    "password": "jatin123"
-}
+GET {{url}}
 
 ### register
 POST {{url}}/register
 
 {
-    "name": "Jatin Kumar",
-    "email": "jatin@abc.com",
+    "name": "Kumar Jatin",
+    "email": "jatin@123.com",
     "password": "jatin",
-    "address": "Kanpur",
+    "address": "New delhi",
     "phoneNumber": "98239234"
 }
+
+### login
+POST {{url}}/login
+
+{
+    "email": "jatin@123.com",
+    "password": "jatin"
+}
+
+
+### very-token
+@token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXRpbkAxMjMuY29tIiwiaWF0IjoxNzI2NTUwNzA2LCJleHAiOjE3MjY1NTA4MTR9.6_otfKpaeQ-84NOX89qAklBydLML_mBt3a_Il31i76M
+GET {{url}}/verify-token?token={{token}}
+
 
 # ==== Orders ==========================================
 @port = 8085
