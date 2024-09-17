@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jatin.orders.dto.OrderDTO;
@@ -21,6 +22,7 @@ import com.jatin.orders.service.OrderService;
  * OrderController
  */
 @RestController
+@RequestMapping("/orders")
 public class OrderController {
 
 	@Autowired

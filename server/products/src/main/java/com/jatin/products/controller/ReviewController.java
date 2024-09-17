@@ -21,7 +21,7 @@ import com.jatin.products.service.ReviewService;
  * ReviewController
  */
 @RestController
-@RequestMapping("/{productId}/reviews")
+@RequestMapping("products/{productId}/reviews")
 public class ReviewController {
 
     @Autowired

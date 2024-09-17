@@ -19,7 +19,7 @@ import com.jatin.products.service.ProductService;
  * ProductController
  */
 @RestController
-@RequestMapping
+@RequestMapping("/products")
 public class ProductController {
 
     @Autowired
