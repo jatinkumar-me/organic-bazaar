@@ -1,0 +1,10 @@
+<div class="card" style="width: 18rem;">
+  <img [src]="image" class="card-img-top" alt="{{ name }}">
+  <div class="card-body">
+    <h5 class="card-title">{{ name }}</h5>
+    <p class="card-text">{{ description }}</p>
+    <p class="card-category"><small class="text-muted">{{ category }}</small></p>
+    <p class="card-price">${{ price.toFixed(2) }}</p>
+    <a href="#" class="btn btn-primary">Add to Cart</a>
+  </div>
+</div>

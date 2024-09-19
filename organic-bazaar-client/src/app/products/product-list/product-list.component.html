@@ -1,0 +1,59 @@
+<div class="container">
+  <!-- Search Bar -->
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search products..."
+        [(ngModel)]="search"
+        (ngModelChange)="onSearchChange($event)"
+      >
+    </div>
+  </div>
+
+  <!-- Category Filter -->
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label for="categoryFilter" class="form-label">Filter by Category</label>
+      <select id="categoryFilter" class="form-select" [(ngModel)]="category" (ngModelChange)="loadProducts()">
+        <option value="">All Categories</option>
+        <!-- <option *ngFor="let category of categories" [value]="category">{{ category }}</option> -->
+      </select>
+    </div>
+  </div>
+
+  <!-- Sort Options -->
+  <div class="row mb-3">
+    <div class="col-md-3">
+      <label for="sortBy" class="form-label">Sort by</label>
+      <select id="sortBy" class="form-select" [(ngModel)]="sort" (ngModelChange)="loadProducts()">
+        <option value="name">Name</option>
+        <option value="price">Price</option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label for="sortOrder" class="form-label">Sort Order</label>
+      <select id="sortOrder" class="form-select" [(ngModel)]="order" (ngModelChange)="loadProducts()">
+        <option [value]="-1">Ascending</option>
+        <option [value]="1">Descending</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Product List -->
+  <div class="row">
+    <div *ngFor="let product of products" class="col-md-4 mb-4">
+      <div class="card h-100">
+        <img [src]="product.image" class="card-img-top" [alt]="product.name">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <!-- <p class="card-text">{{ product.description }}</p> -->
+          <p class="card-text"><strong>Category:</strong> {{ product.category }}</p>
+          <p class="card-text"><strong>Price:</strong> ${{ product.price }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
