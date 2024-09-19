@@ -1,10 +1,8 @@
 server:
   port: 8080
-
 management:
   endpoint.gateway.enabled: true
   endpoints.web.exposure.include: gateway
-
 spring:
   application.name: organic-bazaar-gateway
   cloud:
@@ -27,23 +25,17 @@ spring:
       routes:
         - id: user-service
           uri: lb://USER-SERVICE
-          predicates:
-            Path=/users/**
+          predicates: Path=/users/**
         - id: product-service
           uri: lb://PRODUCT-SERVICE
-          predicates:
-            Path=/products/**
-          filters:
-            - AuthFilter
+          predicates: Path=/products/**
         - id: order-service
           uri: lb://ORDER-SERVICE
-          predicates:
-            Path=/orders/**
+          predicates: Path=/orders/**
           filters:
             - AuthFilter
         - id: subscription-service
           uri: lb://ORDER-SERVICE
-          predicates:
-            Path=/subscriptions/**
+          predicates: Path=/subscriptions/**
           filters:
             - AuthFilter
