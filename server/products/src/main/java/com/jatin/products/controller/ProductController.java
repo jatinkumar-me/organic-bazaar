@@ -26,7 +26,18 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping()
-    public List<Product> getAllProducts() {
+    public List<Product> getAllProducts(
+        @RequestParam(value = "category", required = false) String category,
+        @RequestParam(value = "search", required = false) String search,
+        @RequestParam(value = "sort", required = false) String sortBy,
+        @RequestParam(value = "order", required = false, defaultValue = "1") Integer order
+    ) {
+        return productService.getProducts(category, search, sortBy, order);
+    }
+
+    @GetMapping("/all")
+    public List<Product> getAllProducts(
+    ) {
         return productService.getAllProducts();
     }
 

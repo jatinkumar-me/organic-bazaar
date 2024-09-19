@@ -3,6 +3,7 @@ package com.jatin.products.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.jatin.products.model.Product;
@@ -19,6 +20,12 @@ public class ProductService {
 
     public List<Product> getAllProducts() {
         return productRepository.findAll();
+    }
+
+    public List<Product> getProducts(String category, String search, String sortBy, Integer order) {
+        Sort.Direction sortOrder = (order > 0) ? Sort.Direction.ASC : Sort.Direction.DESC;
+        Sort sort = Sort.by(sortOrder, sortBy != null ? sortBy : "name");
+        return productRepository.findByCategoryAndSearch(category, search, sort);
     }
 
     public List<Product> getProductsByCategory(String category) {
