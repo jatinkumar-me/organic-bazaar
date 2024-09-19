@@ -14,8 +14,12 @@ PID_FILE="services-pids"
 start_service() {
     local service=$1
     echo "Starting $service..."
-    (cd "$service" && ./mvnw spring-boot:run &)
-    echo $! >> "$PID_FILE"
+    (
+        cd "$service" && ./mvnw spring-boot:run
+    ) &
+    local pid=$!  # Capture the PID of the last background process
+    echo "Service $service started with PID $pid."
+    echo $pid >> "$PID_FILE"  # Save the PID to the file
 }
 
 for service in "$MICROSERVICES_DIR"/*/; do
