@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.jatin.users.model.AuthenticationRequest;
+import com.jatin.users.model.AuthenticationResponse;
 import com.jatin.users.model.User;
 import com.jatin.users.model.VerifyTokenResponse;
 import com.jatin.users.repository.UserRepository;
@@ -34,7 +35,7 @@ public class UserService {
         return user;
     }
 
-    public VerifyTokenResponse verify(AuthenticationRequest authenticationRequest) {
+    public AuthenticationResponse verify(AuthenticationRequest authenticationRequest) {
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(),
                         authenticationRequest.getPassword()));
@@ -42,9 +43,9 @@ public class UserService {
             throw new RuntimeException("Access denied");
         }
 
-        VerifyTokenResponse resp = new VerifyTokenResponse();
+        AuthenticationResponse resp = new AuthenticationResponse();
         resp.setToken(jwtService.generateToken(authenticationRequest.getEmail()));
-        resp.setUserId(userRepository.findByEmail(authenticationRequest.getEmail()).getUserId());
+        resp.setUser(userRepository.findByEmail(authenticationRequest.getEmail()));
         return resp;
     }
 

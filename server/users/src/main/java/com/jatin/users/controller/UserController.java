@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jatin.users.model.AuthenticationRequest;
+import com.jatin.users.model.AuthenticationResponse;
 import com.jatin.users.model.User;
 import com.jatin.users.model.VerifyTokenResponse;
 import com.jatin.users.service.UserService;
@@ -33,7 +34,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<VerifyTokenResponse> login(@RequestBody AuthenticationRequest authenticationRequest) {
+    public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest authenticationRequest) {
         return ResponseEntity.ok(userService.verify(authenticationRequest));
     }
 

@@ -1,11 +1,10 @@
 package com.jatin.users.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
 public class AuthenticationResponse {
 
-    private String jwt;
+	private User user;
+    private String token;
 }
