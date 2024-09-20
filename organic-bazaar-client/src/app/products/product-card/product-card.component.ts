@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { Product } from '../products.service';
+import { CartService } from '../../cart/cart.service';
 
 @Component({
   selector: 'app-product-card',
@@ -6,9 +8,14 @@ import { Component, Input } from '@angular/core';
   styleUrl: './product-card.component.css'
 })
 export class ProductCardComponent {
-  @Input() name: string = '';
-  @Input() description: string = '';
-  @Input() image: string = '';
-  @Input() category: string = '';
-  @Input() price: number = 0;
+  @Input() product: Product | null = null;
+
+  constructor(private cartService: CartService) {}
+
+  addProductToCart() {
+    if (this.product == null) {
+      return;
+    }
+    this.cartService.addProduct(this.product);
+  }
 }
