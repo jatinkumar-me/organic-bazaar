@@ -4,7 +4,8 @@
     <a class="navbar-brand" href="#">Organic Bazaar</a>
 
     <!-- Navbar links -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -14,17 +15,25 @@
           <a class="nav-link" aria-current="page" routerLink="/" routerLinkActive="active">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/products" routerLinkActive="active" >Products</a>
+          <a class="nav-link" routerLink="/products" routerLinkActive="active">Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/orders" routerLinkActive="active" >Orders</a>
+          <a class="nav-link" routerLink="/orders" routerLinkActive="active">Orders</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/dashboard" routerLinkActive="active" >Dashboard</a>
+          <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
         </li>
       </ul>
 
       <ul class="navbar-nav ml-auto">
+        <li class="nav-item d-flex align-items-center">
+          <button class="nav-link d-flex align-items-center" (click)="openCart()">
+            <div class="cart-icon">
+              <i class="bi bi-cart"></i>
+              <span class="badge badge-pill badge-primary ml-1 bg-danger">{{ cartItemCount }}</span>
+            </div>
+          </button>
+        </li>
         <li class="nav-item" *ngIf="isLoggedIn; else loginButton">
           <a class="nav-link" href="#">Hello, {{ username }}</a>
         </li>
@@ -34,6 +43,25 @@
           </li>
         </ng-template>
       </ul>
+
+      <div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show': showModal}" style="display: block;"
+        *ngIf="showModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Your Cart</h5>
+              <button type="button" class="close btn-close-red position-absolute" (click)="closeCart()"
+                aria-label="Close" style="top: 10px; right: 10px;">
+                <span aria-hidden="true"><i class="bi bi-x text-white"></i></span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- <app-cart></app-cart> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </nav>
