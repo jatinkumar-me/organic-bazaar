@@ -32,30 +32,89 @@ POST {{url}}
 ### delete product
 
 ### bulk add products
-POST {{url}}/add-many
+POST {{url}}/products/add-many
 
 [
-    {"name": "Apple", "category": "Fruit", "price": 1.00, "stock": 100},
-    {"name": "Banana", "category": "Fruit", "price": 0.50, "stock": 150},
-    {"name": "Carrot", "category": "Vegetable", "price": 0.30, "stock": 200},
-    {"name": "Broccoli", "category": "Vegetable", "price": 0.80, "stock": 180},
-    {"name": "Chicken Breast", "category": "Meat", "price": 5.00, "stock": 50},
-    {"name": "Salmon", "category": "Fish", "price": 6.00, "stock": 60},
-    {"name": "Milk", "category": "Dairy", "price": 1.20, "stock": 120},
-    {"name": "Cheese", "category": "Dairy", "price": 2.50, "stock": 80},
-    {"name": "Bread", "category": "Bakery", "price": 1.00, "stock": 150},
-    {"name": "Butter", "category": "Dairy", "price": 1.80, "stock": 70},
-    {"name": "Orange", "category": "Fruit", "price": 1.20, "stock": 130},
-    {"name": "Strawberry", "category": "Fruit", "price": 2.00, "stock": 90},
-    {"name": "Eggs", "category": "Dairy", "price": 2.50, "stock": 100},
-    {"name": "Rice", "category": "Grain", "price": 3.00, "stock": 200},
-    {"name": "Pasta", "category": "Grain", "price": 1.50, "stock": 180},
-    {"name": "Olive Oil", "category": "Condiment", "price": 5.50, "stock": 50},
-    {"name": "Tomato Sauce", "category": "Condiment", "price": 1.80, "stock": 60},
-    {"name": "Yogurt", "category": "Dairy", "price": 1.00, "stock": 110},
-    {"name": "Granola", "category": "Snack", "price": 3.00, "stock": 90},
-    {"name": "Nuts", "category": "Snack", "price": 4.00, "stock": 70},
-    {"name": "Chocolate", "category": "Snack", "price": 2.20, "stock": 100}
+  {
+    "name": "Apple",
+    "description": "Fresh and juicy red apples.",
+    "image": "apple.jpg",
+    "category": "Fruits",
+    "price": 3.50,
+    "stock": 150
+  },
+  {
+    "name": "Banana",
+    "description": "Ripe and sweet bananas.",
+    "image": "banana.jpg",
+    "category": "Fruits",
+    "price": 1.20,
+    "stock": 200
+  },
+  {
+    "name": "Guava",
+    "description": "Organic crunchy guava.",
+    "image": "guava.jpg",
+    "category": "Fruits",
+    "price": 2.00,
+    "stock": 100
+  },
+  {
+    "name": "Golden apple",
+    "description": "It's basically an apple but golden",
+    "image": "golden-apple.jpg",
+    "category": "Fruits",
+    "price": 2.50,
+    "stock": 75
+  },
+  {
+    "name": "Coconut",
+    "description": "Tough on the outside but soft in the inside.",
+    "image": "coconut.jpg",
+    "category": "Vegetables",
+    "price": 2.20,
+    "stock": 120
+  },
+  {
+    "name": "Dragon Fruit",
+    "description": "It's sweet, it's exotic, it's tasty.",
+    "image": "dragon-fruits.webp",
+    "category": "Fruits",
+    "price": 9.00,
+    "stock": 180
+  },
+  {
+    "name": "Whole wheat bread",
+    "description": "Freshly baked from the oven",
+    "image": "whole-wheat-bread.jpg",
+    "category": "Bakery",
+    "price": 1.80,
+    "stock": 90
+  },
+  {
+    "name": "Pineapple",
+    "description": "Fresh and sweet pineapple.",
+    "image": "pineapple.webp",
+    "category": "Fruits",
+    "price": 4.00,
+    "stock": 60
+  },
+  {
+    "name": "Sourdough",
+    "description": "It's not sour",
+    "image": "sourdough.jpg",
+    "category": "Bakery",
+    "price": 3.80,
+    "stock": 130
+  },
+  {
+    "name": "Burger Bun",
+    "description": "Freshly baked soft buns",
+    "image": "burger-bun.jpg",
+    "category": "Bakery",
+    "price": 1.80,
+    "stock": 160
+  }
 ]
 
 ### Add reviews to product
