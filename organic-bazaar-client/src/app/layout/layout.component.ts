@@ -4,9 +4,16 @@ import { Component } from '@angular/core';
   selector: 'app-layout',
   template: `
     <app-navbar></app-navbar>
-    <router-outlet></router-outlet>
+      <div class="container">
+          <router-outlet></router-outlet>
+      </div>
   `,
-  styles: ``
+  styles: `
+  .container {
+    max-width: 60rem;
+  }
+
+`
 })
 export class LayoutComponent {
 
