@@ -13,6 +13,7 @@ export class ProductListComponent implements OnInit {
   order = SortOrder.INC;
   category = '';
   search = '';
+  categories: string[] = [];
 
   private search$ = new Subject<string>();
 
@@ -23,12 +24,20 @@ export class ProductListComponent implements OnInit {
       debounceTime(300),
     ).subscribe(() => this.loadProducts())
     this.loadProducts();
+    this.loadCategories();
   }
 
   loadProducts() {
     this.productService.getProducts(this.getProductRequestParams()).subscribe({
       next: (data) => this.products = data,
       error: (err) => console.error("Error fetching products", err),
+    });
+  }
+
+  loadCategories() {
+    this.productService.getCategories().subscribe({
+      next: (data) => this.categories = data,
+      error: (err) => console.error("Error fetching product categories", err)
     });
   }
 

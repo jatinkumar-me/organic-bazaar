@@ -22,7 +22,7 @@
         <span class="input-group-text"><i class="bi bi-list"></i></span>
         <select id="categoryFilter" class="form-select" [(ngModel)]="category" (ngModelChange)="loadProducts()">
           <option value="">All Categories</option>
-          <!-- <option *ngFor="let category of categories" [value]="category">{{ category }}</option> -->
+          <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
         </select>
       </div>
     </div>
