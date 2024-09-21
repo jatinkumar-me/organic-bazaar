@@ -1,1 +1,38 @@
-<p>cart works!</p>
+<div class="cart-modal container">
+
+  <div *ngFor="let item of cartItems | keyvalue" class="cart-item row align-items-center justify-content-between mb-3 border-bottom pb-3 g-3">
+    <!-- Product Image -->
+    <div class="col-2">
+      <img [src]="'http://localhost:8083/' + item.value.product.image" alt="{{ item.value.product.name }}" class="img-fluid">
+    </div>
+
+    <!-- Product Info -->
+    <div class="col-5">
+      <strong class="mb-1">{{ item.value.product.name }}</strong>
+      <p class="font-weight-bold">Price: {{ item.value.product.price | currency:'INR' }}</p>
+    </div>
+
+    <!-- Quantity Controls -->
+    <div class="col-3 d-flex align-items-center">
+      <button (click)="decrement(item.key)" class="btn btn-outline-danger btn-sm me-2">
+        <i class="bi bi-dash"></i>
+      </button>
+      <span>{{ item.value.quantity }}</span>
+      <button (click)="increment(item.key)" class="btn btn-outline-success btn-sm ms-2">
+        <i class="bi bi-plus"></i>
+      </button>
+    </div>
+
+    <!-- Remove Button -->
+    <div class="col-2 text-right">
+      <button (click)="removeProduct(item.key)" class="btn btn-danger btn-sm">
+        <i class="bi bi-trash"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Total Price at the bottom -->
+  <div class="total-price mt-4">
+    <h4 class="text-right">Total: {{ getTotalPrice() | currency:'INR' }}</h4>
+  </div>
+</div>

@@ -9,6 +9,9 @@ import { CartComponent } from './cart/cart.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    CartComponent
   ]
 })
 export class CartModule { }
