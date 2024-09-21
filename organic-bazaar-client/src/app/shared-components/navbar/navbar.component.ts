@@ -32,4 +32,15 @@ export class NavbarComponent implements OnInit {
   closeCart(): void {
     this.showModal = false;
   }
+
+  confirmLogout(): void {
+    const confirmation = window.confirm('Are you sure you want to logout?');
+    if (confirmation) {
+      this.logout();
+    }
+  }
+
+  logout(): void {
+    this.authService.logout();
+  }
 }
