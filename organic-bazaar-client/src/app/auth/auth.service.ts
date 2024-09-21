@@ -11,12 +11,14 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   private apiUrl = `${environment.apiUrl}/users`;
-  private tokenKey = '';
+  private tokenKey = 'token';
+  private userKey = 'currentUser';
   private currentUserSubject: BehaviorSubject<User | null>;
   public currentUser: Observable<User | null>;
 
   constructor(private http: HttpClient, private router: Router) {
-    this.currentUserSubject = new BehaviorSubject<User | null>(null);
+    const storedUser = this.loadStoredUser();
+    this.currentUserSubject = new BehaviorSubject<User | null>(storedUser);
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
@@ -27,6 +29,7 @@ export class AuthService {
       tap((response: LoginResponse) => {
         if (response && response.token) {
           this.storeToken(response.token);
+          this.storeUser(response.user);  // Store user data
           this.currentUserSubject.next(response.user);
         }
       })
@@ -35,6 +38,7 @@ export class AuthService {
 
   logout(): void {
     this.removeToken();
+    this.removeUser();  // Clear user data
     this.currentUserSubject.next(null);
     this.router.navigate(['/login']);
   }
@@ -48,12 +52,25 @@ export class AuthService {
     localStorage.setItem(this.tokenKey, token);
   }
 
-  private getToken(): string | null {
+  getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
   }
 
   private removeToken(): void {
     localStorage.removeItem(this.tokenKey);
+  }
+
+  private storeUser(user: User): void {
+    localStorage.setItem(this.userKey, JSON.stringify(user));
+  }
+
+  private loadStoredUser(): User | null {
+    const userJson = localStorage.getItem(this.userKey);
+    return userJson ? JSON.parse(userJson) : null;
+  }
+
+  private removeUser(): void {
+    localStorage.removeItem(this.userKey);
   }
 
   isLoggedIn(): boolean {
