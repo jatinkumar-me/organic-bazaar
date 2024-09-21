@@ -17,7 +17,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,8 +37,9 @@ public class OrderService {
                 .orElseThrow(() -> new RuntimeException("Order not found"));
     }
 
-    public Optional<Order> getOrdersByUserId(Long id) {
-        return orderRepository.findByUserId(id);
+    public List<Order> getOrdersByUserId(Long id) {
+        List<Order> orders = orderRepository.findByUserId(id);
+        return orders;
     }
 
     public Order createOrder(Long userId, OrderDTO orderDTO) {
