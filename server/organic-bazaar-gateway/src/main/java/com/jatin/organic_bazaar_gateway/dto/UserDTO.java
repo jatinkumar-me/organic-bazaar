@@ -5,23 +5,23 @@ package com.jatin.organic_bazaar_gateway.dto;
  */
 public class UserDTO {
 
-	private Long id;
+	private Long userId;
 	private String token;
 
 	public UserDTO() {
 	}
 
 	public UserDTO(Long id, String token) {
-		this.id = id;
+		this.userId = id;
 		this.token = token;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setUserId(Long id) {
+		this.userId = id;
 	}
 
 	public String getToken() {
@@ -31,4 +31,10 @@ public class UserDTO {
 	public void setToken(String token) {
 		this.token = token;
 	}
+
+	@Override
+	public String toString() {
+		return "UserDTO [id=" + userId + ", token=" + token + "]";
+	}
+	
 }
