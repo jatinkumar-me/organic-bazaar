@@ -1,5 +1,4 @@
 <div class="cart-modal container">
-
   <div *ngFor="let item of cartItems | keyvalue" class="cart-item row align-items-center justify-content-between mb-3 border-bottom pb-3 g-3">
     <!-- Product Image -->
     <div class="col-2">
@@ -31,8 +30,18 @@
     </div>
   </div>
 
-  <!-- Total Price at the bottom -->
-  <div class="total-price mt-4">
-    <h4 class="text-right">Total: {{ getTotalPrice() | currency:'INR' }}</h4>
+  <!-- Total Price and Order Button Side by Side -->
+  <div class="row align-items-center justify-content-between mt-4">
+    <!-- Total Price -->
+    <div class="col-md-6">
+      <h4>Total: {{ getTotalPrice() | currency:'INR' }}</h4>
+    </div>
+
+    <!-- Order Button -->
+    <div class="col-md-6 text-end">
+      <button (click)="placeOrder()" class="btn btn-primary btn-lg">
+        <i class="bi bi-bag-check"></i> Place Order
+      </button>
+    </div>
   </div>
 </div>
