@@ -30,12 +30,12 @@ spring:
           uri: lb://PRODUCT-SERVICE
           predicates: Path=/products/**
         - id: order-service
-          uri: lb://ORDER-SERVICE
+          uri: lb://ORDERS-SERVICE
           predicates: Path=/orders/**
           filters:
             - AuthFilter
         - id: subscription-service
-          uri: lb://ORDER-SERVICE
+          uri: lb://ORDERS-SERVICE
           predicates: Path=/subscriptions/**
           filters:
             - AuthFilter
