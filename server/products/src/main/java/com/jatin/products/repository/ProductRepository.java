@@ -32,4 +32,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             @Param("category") String category,
             @Param("search") String search,
             Sort sort);
+    
+    @Query("SELECT DISTINCT p.category FROM Product p")
+    List<String> findUniqueCategories();
 }

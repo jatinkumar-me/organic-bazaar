@@ -51,4 +51,9 @@ public class ProductService {
         List<Product> savedProducts = productRepository.saveAll(products);
         return savedProducts;
     }
+
+    public List<String> getUniqueCategories() {
+        List<String> categories = productRepository.findUniqueCategories();
+        return categories;
+    }
 }
