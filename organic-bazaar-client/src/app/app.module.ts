@@ -11,7 +11,8 @@ import { SubscriptionsModule } from './subscriptions/subscriptions.module';
 import { UserDashboardModule } from './user-dashboard/user-dashboard.module';
 import { LayoutComponent } from './layout/layout.component';
 import { SharedComponentsModule } from './shared-components/shared-components.module';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { authInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import { provideHttpClient } from '@angular/common/http';
     UserDashboardModule,
     SharedComponentsModule,
   ],
-  providers: [provideHttpClient()],
+  providers: [
+    provideHttpClient(withInterceptors([authInterceptor]))
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
