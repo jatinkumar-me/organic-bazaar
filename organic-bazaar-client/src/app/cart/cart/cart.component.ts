@@ -32,4 +32,11 @@ export class CartComponent implements OnInit {
   removeProduct(productId: number): void {
     this.cartService.removeProduct(productId);
   }
+
+  placeOrder() {
+    this.cartService.makeOrder().subscribe({
+      next: () => { alert("Order placed successfully") },
+      error: (err) => { console.error("Couldn't create order, reason", err) },
+    });
+  }
 }
