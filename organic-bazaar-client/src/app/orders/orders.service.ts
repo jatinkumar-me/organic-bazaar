@@ -51,7 +51,7 @@ export interface Order extends OrderRequest {
   id: number,
   userId: number,
   orderDate: Date,
-  orderStatus: OrderStatus,
+  status: OrderStatus,
   totalPrice: number,
   subscriptionId: number | null,
 }
