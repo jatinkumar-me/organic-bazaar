@@ -8,7 +8,6 @@ import { CartModule } from './cart/cart.module';
 import { OrdersModule } from './orders/orders.module';
 import { ProductsModule } from './products/products.module';
 import { SubscriptionsModule } from './subscriptions/subscriptions.module';
-import { UserDashboardModule } from './user-dashboard/user-dashboard.module';
 import { LayoutComponent } from './layout/layout.component';
 import { SharedComponentsModule } from './shared-components/shared-components.module';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
@@ -27,7 +26,6 @@ import { authInterceptor } from './auth/auth.interceptor';
     OrdersModule,
     ProductsModule,
     SubscriptionsModule,
-    UserDashboardModule,
     SharedComponentsModule,
   ],
   providers: [
