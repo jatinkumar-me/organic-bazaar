@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartItem, CartService } from '../cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -9,7 +10,7 @@ import { CartItem, CartService } from '../cart.service';
 export class CartComponent implements OnInit {
   cartItems: Map<number, CartItem> = new Map();
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private router: Router) { }
 
   ngOnInit(): void {
     this.cartService.cartSubject.subscribe(cart => {
@@ -35,7 +36,10 @@ export class CartComponent implements OnInit {
 
   placeOrder() {
     this.cartService.makeOrder().subscribe({
-      next: () => { alert("Order placed successfully") },
+      next: () => {
+        alert("Order placed successfully")
+        this.router.navigate(['/orders']);
+      },
       error: (err) => { console.error("Couldn't create order, reason", err) },
     });
   }
