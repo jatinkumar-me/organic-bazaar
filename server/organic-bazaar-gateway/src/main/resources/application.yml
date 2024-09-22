@@ -23,6 +23,12 @@ spring:
             allowCredentials: true
       discovery.locator.enabled: true
       routes:
+        - id: product-reviews
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/products/*/reviews/**
+          filters:
+            - AuthFilter
         - id: user-service
           uri: lb://USER-SERVICE
           predicates: Path=/users/**
