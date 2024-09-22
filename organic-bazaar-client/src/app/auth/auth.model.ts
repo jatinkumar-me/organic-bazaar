@@ -12,6 +12,7 @@ export interface RegisterRequest {
 }
 
 export interface User extends RegisterRequest {
+  userId: number,
   role: "ADMIN" | "USER",
   createdAt: Date,
 }
