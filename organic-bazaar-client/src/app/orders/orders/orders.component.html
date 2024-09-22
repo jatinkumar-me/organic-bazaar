@@ -30,7 +30,7 @@
     </div>
     <div class="card-footer text-muted">
       Total Price: <strong>{{ order.totalPrice | currency:'INR' }}</strong>
-      <button class="btn btn-danger btn-sm float-end">
+      <button class="btn btn-danger btn-sm float-end" (click)="cancelOrder(order.id)">
         <i class="bi bi-trash"></i> Cancel Order
       </button>
     </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Order, OrdersService } from '../orders.service';
+import { Order, OrdersService, OrderStatus } from '../orders.service';
 import { Product, ProductsService } from '../../products/products.service';
 
 @Component({
@@ -40,6 +40,18 @@ export class OrdersComponent implements OnInit {
       },
       error: (err) => {
         console.error("error fetching products data", err);
+      }
+    });
+  }
+
+  cancelOrder(orderId: number) {
+    this.ordersService.cancelOrder(orderId).subscribe({
+      next: () => {
+        alert("Order cancelled")
+        this.orders[this.orders.findIndex((order) => order.id === orderId)].status = OrderStatus.CANCELLED;
+      },
+      error: (err) => {
+        console.error("error cancelling order", err);
       }
     });
   }
