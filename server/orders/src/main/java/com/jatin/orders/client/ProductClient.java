@@ -15,9 +15,9 @@ import com.jatin.orders.dto.ProductResponse;
 @FeignClient(name = "product-service")
 public interface ProductClient {
 
-	@GetMapping("/ids")
+	@GetMapping("/products/ids")
 	List<ProductResponse> getProductByIds(@RequestParam List<Long> ids);
 
-	@GetMapping("/{id}")
+	@GetMapping("/products/{id}")
     ProductResponse getProductById(@PathVariable("id") Long productId);
 }
