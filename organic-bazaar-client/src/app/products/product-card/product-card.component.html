@@ -1,7 +1,11 @@
 <div class="card">
-  <img [src]="'http://localhost:8083/' + product!.image" class="card-img-top" [alt]="product!.name">
+  <a [routerLink]="['/products', product!.id]">
+    <img [src]="'http://localhost:8083/' + product!.image" class="card-img-top" [alt]="product!.name">
+  </a>
   <div class="card-body">
-    <h5 class="card-title">{{ product!.name }}</h5>
+    <a [routerLink]="['/products', product!.id]" class="text-decoration-none">
+      <h5 class="card-title">{{ product!.name }}</h5>
+    </a>
     <p class="card-text">{{ product!.description }}</p>
     <p class="card-text"><strong>Category:</strong> {{ product!.category }}</p>
     <p class="card-text"><strong>Price:</strong> {{ product!.price | currency:'INR' }}</p>
