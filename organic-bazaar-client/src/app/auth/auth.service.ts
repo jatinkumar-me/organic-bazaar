@@ -38,7 +38,7 @@ export class AuthService {
 
   logout(): void {
     this.removeToken();
-    this.removeUser();  // Clear user data
+    this.removeUser();
     this.currentUserSubject.next(null);
     this.router.navigate(['/login']);
   }
