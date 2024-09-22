@@ -6,6 +6,8 @@ import { RegisterComponent } from './auth/register/register.component';
 import { ProductListComponent } from './products/product-list/product-list.component';
 import { OrdersComponent } from './orders/orders/orders.component';
 import { AuthGuard } from './auth/auth.guard';
+import { SubscriptionComponent } from './subscriptions/subscription/subscription.component';
+import { ProductDetailsComponent } from './products/product-details/product-details.component';
 
 const routes: Routes = [
   {
@@ -15,7 +17,9 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'products', component: ProductListComponent },
+      { path: 'products/:productId', component: ProductDetailsComponent },
       { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] },
+      { path: 'subscriptions', component: SubscriptionComponent, canActivate: [AuthGuard] },
     ]
   },
   { path: '**', redirectTo: 'products' }
