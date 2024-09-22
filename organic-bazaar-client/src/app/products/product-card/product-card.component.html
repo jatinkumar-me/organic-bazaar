@@ -9,6 +9,23 @@
     <p class="card-text">{{ product!.description }}</p>
     <p class="card-text"><strong>Category:</strong> {{ product!.category }}</p>
     <p class="card-text"><strong>Price:</strong> {{ product!.price | currency:'INR' }}</p>
-    <button (click)="addProductToCart()" class="btn btn-primary">Add to Cart</button>
+    <button (click)="addProductToCart()" class="btn btn-primary me-2">Add to Cart</button>
+    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#subscriptionModal" (click)="openModal()">
+      Subscribe </button>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show': showModal}" style="display: block;"
+  *ngIf="showModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Subscribe Product</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <app-subscription-form [product]="product"></app-subscription-form>
+      </div>
+    </div>
   </div>
 </div>

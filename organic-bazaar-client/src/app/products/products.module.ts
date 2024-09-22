@@ -6,6 +6,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { FormsModule } from '@angular/forms';
 import { ReviewsListComponent } from './reviews-list/reviews-list.component';
 import { RouterModule } from '@angular/router';
+import { SubscriptionsModule } from '../subscriptions/subscriptions.module';
 
 
 
@@ -20,6 +21,7 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     FormsModule,
     RouterModule,
+    SubscriptionsModule,
   ]
 })
 export class ProductsModule { }

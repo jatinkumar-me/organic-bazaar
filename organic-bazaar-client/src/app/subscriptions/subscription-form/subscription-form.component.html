@@ -1,0 +1,72 @@
+<div class="modal-body">
+  <form (ngSubmit)="createSubscription()">
+    <!-- Product Image and Name -->
+    <div class="row mb-3">
+      <div class="col-2">
+        <img [src]="'http://localhost:8083/' + product?.image" alt="{{ product?.name }}" class="img-fluid">
+      </div>
+
+      <div class="col-5">
+        <strong class="mb-1">{{ product?.name }}</strong>
+        <p class="font-weight-bold">Price: {{ product?.price | currency:'INR' }}</p>
+      </div>
+
+      <!-- Quantity Setter -->
+      <div class="col-3 d-flex align-items-center">
+        <button (click)="decrementQuantity()" class="btn btn-outline-danger btn-sm me-2" type="button">
+          <i class="bi bi-dash"></i>
+        </button>
+        <span>{{ subscriptionRequest.quantity }}</span>
+        <button (click)="incrementQuantity()" class="btn btn-outline-success btn-sm ms-2" type="button">
+          <i class="bi bi-plus"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Subscription Type Selection -->
+    <div class="mb-3">
+      <label for="scheduleType" class="form-label">Subscription Type</label>
+      <select [(ngModel)]="subscriptionRequest.scheduleType" class="form-select" name="scheduleType" required
+        (change)="resetDeliveryDays()">
+        <option [value]="deliveryScheduleType.WEEKLY">Weekly</option>
+        <option [value]="deliveryScheduleType.MONTHLY">Monthly</option>
+      </select>
+    </div>
+
+    <!-- Weekly Days Selection -->
+    <div class="mb-3" *ngIf="subscriptionRequest.scheduleType === deliveryScheduleType.WEEKLY">
+      <label class="form-label">Select Days of the Week</label>
+      <div class="d-flex flex-wrap">
+        <div *ngFor="let day of daysOfWeek" class="form-check form-check-inline">
+          <input type="checkbox" [checked]="subscriptionRequest.deliveryDays?.includes(day)"
+                 (change)="toggleDay(day)" class="form-check-input" id="{{ day }}">
+          <label class="form-check-label" for="{{ day }}">{{ day | titlecase }}</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Monthly Day Selection -->
+    <div class="mb-3" *ngIf="subscriptionRequest.scheduleType === deliveryScheduleType.MONTHLY">
+      <label for="dayOfMonth" class="form-label">Select Day of the Month</label>
+      <input type="number" [(ngModel)]="subscriptionRequest.dayOfMonth" class="form-control" name="dayOfMonth" min="1"
+        max="31">
+    </div>
+
+    <!-- Subscription Period -->
+    <div class="mb-3">
+      <label for="dateRange" class="form-label">Subscription Period</label>
+      <input type="date" [(ngModel)]="subscriptionRequest.startDate" class="form-control" name="startDate"
+        placeholder="Start Date" required>
+      <input type="date" [(ngModel)]="subscriptionRequest.endDate" class="form-control mt-2" name="endDate"
+        placeholder="End Date">
+    </div>
+
+    <!-- Payable Amount -->
+    <div class="mb-3">
+      <small class="form-label" >Payable Amount</small>
+      <h2 class="form-control-plaintext">{{ calculatePayableAmount() | currency:'INR' }}</h2>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!subscriptionRequest.dayOfMonth && subscriptionRequest.deliveryDays?.length == 0">Submit</button>
+  </form>
+</div>

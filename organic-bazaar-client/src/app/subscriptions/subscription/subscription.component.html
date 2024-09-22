@@ -1,0 +1,71 @@
+<div class="container mt-4">
+  <h2>Your Subscriptions</h2>
+
+  <div *ngFor="let subscription of subscriptions" class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img [src]="'http://localhost:8083/' + products.get(subscription.productId)?.image" alt="Product Image"
+          class="">
+      </div>
+      <div class="col-md-7">
+        <div class="card-body">
+          <h3 class="card-title">{{ products.get(subscription.productId)?.name }}</h3>
+          <span class="card-text">{{ products.get(subscription.productId)?.price | currency:'INR'
+            }}</span>
+          <i class="bi bi-x"></i>
+          <span class="card-text"> {{ subscription.quantity }}</span>
+          <p class="card-text"><strong>Next Delivery Date:</strong> {{ subscription.nextDeliveryDate | date }}</p>
+
+          <!-- Show Subscription Type and Schedule -->
+          <p class="card-text"><strong>Subscription Type:</strong> {{ subscription.scheduleType === 'WEEKLY' ? 'Weekly'
+            : 'Monthly' }}</p>
+
+          <ng-container *ngIf="subscription.scheduleType === 'WEEKLY'">
+            <p class="card-text">
+              <span *ngFor="let day of subscription.deliveryDays" class="badge bg-primary me-1">
+                {{ day | titlecase }}
+              </span>
+            </p>
+          </ng-container>
+
+          <ng-container *ngIf="subscription.scheduleType === 'MONTHLY'">
+            <p class="card-text">
+              <strong>Day of Month:</strong> {{ subscription.dayOfMonth }}
+            </p>
+          </ng-container>
+
+          <p class="card-text">
+            <strong>Status:</strong>
+            <span [ngClass]="{
+              'text-success': subscription.status === 'ACTIVE',
+              'text-warning': subscription.status === 'PAUSED',
+              'text-danger': subscription.status === 'CANCELLED'
+            }">
+              {{ subscription.status }}
+            </span>
+          </p>
+          <h2 class="card-text"> {{ calculatePayable(subscription) | currency:'INR' }}</h2>
+
+          <!-- Action buttons for Pause, Resume, and Cancel -->
+          <div class="btn-group" *ngIf="subscription.status !== 'CANCELLED'">
+            <button *ngIf="subscription.status === 'PAUSED'" class="btn btn-success"
+              (click)="resumeSubscription(subscription.id)">
+              <i class="bi bi-play-fill"></i> Resume
+            </button>
+            <button *ngIf="subscription.status === 'ACTIVE'" class="btn btn-warning"
+              (click)="pauseSubscription(subscription.id)">
+              <i class="bi bi-pause-fill"></i> Pause
+            </button>
+            <button class="btn btn-danger" (click)="cancelSubscription(subscription.id)">
+              <i class="bi bi-x"></i> Cancel
+            </button>
+          </div>
+
+          <p *ngIf="subscription.status === 'CANCELLED'" class="text-danger">
+            Subscription Cancelled
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
