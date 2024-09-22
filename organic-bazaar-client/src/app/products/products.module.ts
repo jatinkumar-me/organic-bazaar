@@ -4,6 +4,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { FormsModule } from '@angular/forms';
+import { ReviewsListComponent } from './reviews-list/reviews-list.component';
 import { RouterModule } from '@angular/router';
 
 
@@ -12,11 +13,12 @@ import { RouterModule } from '@angular/router';
   declarations: [
     ProductListComponent,
     ProductDetailsComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ReviewsListComponent,
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
     RouterModule,
   ]
 })
