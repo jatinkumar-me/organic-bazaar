@@ -22,6 +22,10 @@ export class ProductsService {
     return this.httpClient.get<Product[]>(getProductsUrl.toString());
   }
 
+  getProductById(productId: number): Observable<Product> {
+    return this.httpClient.get<Product>(`${this.apiUrl}/${productId}`);
+  }
+
   getProductByIds(productIds: Set<number>): Observable<Product[]> {
     let params = new HttpParams();
     productIds.forEach(id => {
@@ -34,6 +38,14 @@ export class ProductsService {
   getCategories(): Observable<string[]> {
     return this.httpClient.get<string[]>(this.apiUrl.toString() + "/categories");
   }
+
+  postReview(productId: number, reviewRequest: ReviewRequest): Observable<Review> {
+    return this.httpClient.post<Review>(`${this.apiUrl.toString()}/${productId}/reviews`, reviewRequest);
+  }
+
+  delete(productId: number, reviewId: number): Observable<null> {
+    return this.httpClient.delete<null>(`${this.apiUrl.toString()}/${productId}/reviews/${reviewId}`);
+  }
 }
 
 export interface Product {
@@ -43,6 +55,7 @@ export interface Product {
   image: string,
   category: string,
   price: number
+  reviews: Review[]
 }
 
 export interface ProductRequestParams {
@@ -55,4 +68,14 @@ export interface ProductRequestParams {
 export enum SortOrder {
   INC = -1,
   DEC = 1
+}
+
+export interface ReviewRequest {
+  comment: string,
+  rating: number,
+}
+
+export interface Review extends ReviewRequest {
+  id: number,
+  userId: number
 }
