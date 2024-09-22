@@ -130,6 +130,9 @@ userId: 2
 DELETE {{url}}/1/reviews/2
 userId: 2
 
+### Get unique categories
+GET {{url}}/products/categories
+
 
 ### ==== Auth ============================================
 @port = 8082
@@ -168,7 +171,7 @@ GET {{url}}/verify-token?token={{token}}
 
 
 # ==== Orders ==========================================
-@port = 8085
+@port = 8080
 @url = http://{{host}}:{{port}}
 
 ### get all orders
