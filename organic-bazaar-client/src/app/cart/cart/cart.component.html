@@ -1,17 +1,17 @@
 <div class="cart-modal container">
   <div *ngFor="let item of cartItems | keyvalue" class="cart-item row align-items-center justify-content-between mb-3 border-bottom pb-3 g-3">
-    <!-- Product Image -->
+
     <div class="col-2">
       <img [src]="'http://localhost:8083/' + item.value.product.image" alt="{{ item.value.product.name }}" class="img-fluid">
     </div>
 
-    <!-- Product Info -->
+
     <div class="col-5">
       <strong class="mb-1">{{ item.value.product.name }}</strong>
       <p class="font-weight-bold">Price: {{ item.value.product.price | currency:'INR' }}</p>
     </div>
 
-    <!-- Quantity Controls -->
+
     <div class="col-3 d-flex align-items-center">
       <button (click)="decrement(item.key)" class="btn btn-outline-danger btn-sm me-2">
         <i class="bi bi-dash"></i>
@@ -22,7 +22,7 @@
       </button>
     </div>
 
-    <!-- Remove Button -->
+
     <div class="col-2 text-right">
       <button (click)="removeProduct(item.key)" class="btn btn-danger btn-sm">
         <i class="bi bi-trash"></i>
@@ -30,14 +30,14 @@
     </div>
   </div>
 
-  <!-- Total Price and Order Button Side by Side -->
+
   <div class="row align-items-center justify-content-between mt-4">
-    <!-- Total Price -->
+
     <div class="col-md-6">
       <h4>Total: {{ getTotalPrice() | currency:'INR' }}</h4>
     </div>
 
-    <!-- Order Button -->
+
     <div class="col-md-6 text-end">
       <button (click)="placeOrder()" class="btn btn-primary btn-lg">
         <i class="bi bi-bag-check"></i> Place Order
