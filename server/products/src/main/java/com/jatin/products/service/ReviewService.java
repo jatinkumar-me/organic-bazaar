@@ -45,7 +45,7 @@ public class ReviewService {
         Long reviewUserId = reviewRepository
                 .findById(id)
                 .orElseThrow(() -> new RuntimeException("Review doesn't exist"))
-                .getId();
+                .getUserId();
         if (userId != reviewUserId) {
             throw new RuntimeException("Unauthorized");
         }
