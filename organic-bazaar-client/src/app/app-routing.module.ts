@@ -8,12 +8,14 @@ import { OrdersComponent } from './orders/orders/orders.component';
 import { AuthGuard } from './auth/auth.guard';
 import { SubscriptionComponent } from './subscriptions/subscription/subscription.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
     children: [
+      { path: '', component: HomeComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'products', component: ProductListComponent },

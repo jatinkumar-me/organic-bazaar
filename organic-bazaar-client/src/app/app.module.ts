@@ -12,11 +12,13 @@ import { LayoutComponent } from './layout/layout.component';
 import { SharedComponentsModule } from './shared-components/shared-components.module';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from './auth/auth.interceptor';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LayoutComponent
+    LayoutComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
