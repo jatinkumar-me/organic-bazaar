@@ -20,6 +20,7 @@ public class Review {
     private Product product;
 
     private Long userId;
+    @Lob
     private String comment;
     /**
      * Rating will be between 1 to 5

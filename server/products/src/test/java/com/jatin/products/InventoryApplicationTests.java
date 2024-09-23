@@ -1,4 +1,4 @@
-package com.jatin.inventory;
+package com.jatin.products;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
