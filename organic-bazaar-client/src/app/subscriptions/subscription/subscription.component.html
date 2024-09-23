@@ -14,7 +14,9 @@
             }}</span>
           <i class="bi bi-x"></i>
           <span class="card-text"> {{ subscription.quantity }}</span>
-          <p class="card-text"><strong>Next Delivery Date:</strong> {{ subscription.nextDeliveryDate | date }}</p>
+          <p class="card-text" *ngIf="subscription.status !== 'CANCELLED'">
+            <strong>Next Delivery Date:</strong> {{ subscription.nextDeliveryDate | date }}
+          </p>
 
           <!-- Show Subscription Type and Schedule -->
           <p class="card-text"><strong>Subscription Type:</strong> {{ subscription.scheduleType === 'WEEKLY' ? 'Weekly'
